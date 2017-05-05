@@ -8,8 +8,9 @@
 #' @param url e.g. "http://www.football-data.co.uk/mmz4281/1516/E0.csv"
 #' @return tibble for one season and one league with all matches, results and bookmaker odds
 #'
-#'
+
 DL_FootballDataCoUk_season = function(div,url){
+
   # Get the data:
   Tttt=read.csv(url,stringsAsFactors=FALSE)
 
@@ -38,37 +39,46 @@ DL_FootballDataCoUk_season = function(div,url){
   # Determine columns that contain goals:
   gcols=intersect(colnames(Ttt),c("FTHG","FTAG","Res","HTHG","HTAG"))
 
-  Tt = Ttt %>%
-    dplyr::select_(.dots = c("Div","Season","Date","HomeTeam","AwayTeam",gcols,bcols)) %>%
-    gather_("Bookmaker","Odds",bcols) %>%
-    mutate(Location = substr(Bookmaker,nchar(Bookmaker),nchar(Bookmaker)),
-           Bookmaker = substr(Bookmaker,1,(nchar(Bookmaker)-1))) %>%
-    spread(Location,Odds) %>%
-    mutate(Overrun = 1/H + 1/D + 1/A) %>%
-    mutate(H = ifelse(Overrun<0.95,0,H),
-           D = ifelse(Overrun<0.95,0,D),
-           A = ifelse(Overrun<0.95,0,A)) %>%
-    dplyr::select(-Overrun) %>%
-    gather_("Location","Odds",c("A","D","H")) %>%
-    group_by(Date,HomeTeam,AwayTeam,Location) %>%
-    arrange(-Odds) %>%
-    filter(row_number()==1) %>%
-    ungroup() %>%
-    mutate(Bookmaker_Odds = paste(Bookmaker,Odds,sep="_")) %>%
-    dplyr::select(-Bookmaker,-Odds) %>%
-    spread(Location,Bookmaker_Odds) %>%
-    separate(H,c("BBHO","BHO"),sep="_") %>%
-    separate(D,c("BBDO","BDO"),sep="_") %>%
-    separate(A,c("BBAO","BAO"),sep="_") %>%
-    mutate(BHO=as.numeric(BHO)) %>%
-    mutate(BDO=as.numeric(BDO)) %>%
-    mutate(BAO=as.numeric(BAO)) %>%
-    dplyr::select_(.dots=c("Div","Season","Date","HomeTeam","AwayTeam",gcols,"BHO","BDO","BAO","BBHO","BBDO","BBAO")) %>%
+  if(length(bcols)>0){
+    Tt = Ttt %>%
+      dplyr::select_(.dots = c("Div","Season","Date","HomeTeam","AwayTeam",gcols,bcols)) %>%
+      gather_("Bookmaker","Odds",bcols) %>%
+      mutate(Location = substr(Bookmaker,nchar(Bookmaker),nchar(Bookmaker)),
+             Bookmaker = substr(Bookmaker,1,(nchar(Bookmaker)-1))) %>%
+      spread(Location,Odds) %>%
+      mutate(Overrun = 1/H + 1/D + 1/A) %>%
+      mutate(H = ifelse(Overrun<0.95,0,H),
+             D = ifelse(Overrun<0.95,0,D),
+             A = ifelse(Overrun<0.95,0,A)) %>%
+      dplyr::select(-Overrun) %>%
+      gather_("Location","Odds",c("A","D","H")) %>%
+      group_by(Date,HomeTeam,AwayTeam,Location) %>%
+      arrange(-Odds) %>%
+      filter(row_number()==1) %>%
+      ungroup() %>%
+      mutate(Bookmaker_Odds = paste(Bookmaker,Odds,sep="_")) %>%
+      dplyr::select(-Bookmaker,-Odds) %>%
+      spread(Location,Bookmaker_Odds) %>%
+      separate(H,c("BBHO","BHO"),sep="_") %>%
+      separate(D,c("BBDO","BDO"),sep="_") %>%
+      separate(A,c("BBAO","BAO"),sep="_") %>%
+      mutate(BHO=as.numeric(BHO)) %>%
+      mutate(BDO=as.numeric(BDO)) %>%
+      mutate(BAO=as.numeric(BAO)) %>%
+      dplyr::select_(.dots=c("Div","Season","Date","HomeTeam","AwayTeam",gcols,"BHO","BDO","BAO","BBHO","BBDO","BBAO"))
+  } else {
+    Tt = Ttt %>%
+      dplyr::select_(.dots = c("Div","Season","Date","HomeTeam","AwayTeam",gcols))
+
+  }
+
+  Tt = Tt %>%
     mutate(HomeTeam=sub("^ *","",HomeTeam),
            HomeTeam=sub(" *$","",HomeTeam),
            AwayTeam=sub("^ *","",AwayTeam),
            AwayTeam=sub(" *$","",AwayTeam)) %>%
     arrange(Div,Date,HomeTeam)
+
 
   return(Tt)
 
