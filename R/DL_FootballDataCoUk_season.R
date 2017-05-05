@@ -4,9 +4,9 @@
 #'
 #' @export
 #' @import tidyverse
-#' @param div e.g. ENG0
-#' @param url e.g. http://www.football-data.co.uk/mmz4281/1516/E0.csv
-#' @return tibble with all matches
+#' @param div e.g. "ENG1"
+#' @param url e.g. "http://www.football-data.co.uk/mmz4281/1516/E0.csv"
+#' @return tibble for one season and one league with all matches, results and bookmaker odds
 #'
 #'
 DL_FootballDataCoUk_season = function(div,url){

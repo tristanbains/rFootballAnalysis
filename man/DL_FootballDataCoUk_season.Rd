@@ -7,12 +7,12 @@
 DL_FootballDataCoUk_season(div, url)
 }
 \arguments{
-\item{div}{e.g. ENG0}
+\item{div}{e.g. "ENG1"}
 
-\item{url}{e.g. http://www.football-data.co.uk/mmz4281/1516/E0.csv}
+\item{url}{e.g. "http://www.football-data.co.uk/mmz4281/1516/E0.csv"}
 }
 \value{
-tibble with all matches
+tibble for one season and one league with all matches, results and bookmaker odds
 }
 \description{
 download one season for one league from www.football-data.co.uk
