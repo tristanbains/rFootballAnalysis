@@ -8,7 +8,7 @@ DL_FootballDataCoUk(divs, season1, season2,
   DL.input = DL_FootballDataCoUk_data())
 }
 \arguments{
-\item{divs}{e.g. c("ENG1","FRA")}
+\item{divs}{e.g. c("ENG1","FRA1")}
 
 \item{season1}{e.g. ("2001-2002")}
 

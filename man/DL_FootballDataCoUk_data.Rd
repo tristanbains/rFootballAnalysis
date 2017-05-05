@@ -7,7 +7,7 @@
 DL_FootballDataCoUk_data()
 }
 \value{
-tibble with columns ISO3 (e.g. "NLD1"), Year (e.g. "2005") and URL
+tibble with columns ISO4 (e.g. "NLD1"), Year (e.g. "2005") and URL
 }
 \description{
 download multiple seasons for multiple league from www.football-data.co.uk
