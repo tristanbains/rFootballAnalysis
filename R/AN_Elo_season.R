@@ -1,6 +1,6 @@
 #' AN_Elo_season
 #'
-#' wrapper function that downloads multiple seasons for multiple league from one of the source websites
+#' calculates all Elo ratings and home, draw and away percentages per match
 #'
 #' @export
 #' @import tidyverse
