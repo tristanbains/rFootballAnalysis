@@ -106,7 +106,7 @@ ST_Ranking=function(data,ordering=ST_RankingOrdering()){
   # HIER GEBLEVEN
 
   # Add ranking:
-  Ttt = Tt %>%
+  # Ttt = Tt %>%
 
 
   return(Ttt)

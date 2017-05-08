@@ -1,0 +1,32 @@
+---
+title: "Untitled"
+author: "Author"
+output: html_document
+---
+```{r, include=FALSE, cache=FALSE}
+
+library(rFootballAnalysis)
+
+Ttt = DL_MatchData("ESP1","2014-2015","2015-2016")
+Tt = ST_Ranking(Ttt)
+
+```
+
+```{r, echo=FALSE}
+
+nLeagues = unique(Tt[,c("Div","Season")]) %>% 
+  arrange(Div,Season)
+for (i in 1:2){
+  div.i = nLeagues$Div[i]
+  season.i = nLeagues$Season[i]
+  titleRanking = paste0("##Season ranking for ",div.i," season ",season.i)
+  
+  cat('\n')
+  cat(titleRanking)
+  kable(Tt %>% 
+          filter(Div==div.i,Season==season.i) %>% 
+          arrange(-Pts,-Pts.agg))
+  cat('\n')
+}
+
+```
