@@ -6,6 +6,7 @@ output: html_document
 ```{r, include=FALSE, cache=FALSE}
 
 library(rFootballAnalysis)
+library(tidyverse)
 
 Ttt = DL_MatchData("ESP1","2014-2015","2015-2016")
 Tt = ST_Ranking(Ttt)
@@ -23,9 +24,9 @@ for (i in 1:2){
   
   cat('\n')
   cat(titleRanking)
-  kable(Tt %>% 
-          filter(Div==div.i,Season==season.i) %>% 
-          arrange(-Pts,-Pts.agg))
+  knitr::kable(Tt %>%
+                 filter(Div==div.i,Season==season.i))
+  # Tt %>% filter(Div==div.i,Season==season.i)
   cat('\n')
 }
 

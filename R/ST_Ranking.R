@@ -98,17 +98,33 @@ ST_Ranking=function(data,ordering=ST_RankingOrdering()){
   Tt = Tt %>%
     full_join(Tt.agg)
 
+  rm(Tt.agg,Tt.aggH,Tt.aggA)
+  gc()
+
+  colsTt = colnames(Tt)
+
   # Determine column ordering:
   order = ordering %>%
     filter(Div%in%c(Tt$Div,"ENG1"),Season%in%Tt$Season) %>%
     arrange(Div,Season,Order)
+  orderUnique = unique(order[,c("Div","Season")])
 
   # HIER GEBLEVEN
+  # order %>% mutate(OrderL=sprintf("Order%02d",Order)) %>% dplyr::select(-Order) %>% spread(OrderL,Parameter)
+  # sub("-","",unique(order$Parameter))
+  Tt.order = Tt[,c("Div","Season","Team",sub("-","",unique(order$Parameter)))]
 
   # Add ranking:
-  # Ttt = Tt %>%
+  for (j in 1:nrow(orderUnique)){
+    order.j = order %>%
+      inner_join(orderUnique[j,]) %>%
+      arrange(Order)
+    order.j = order.j$Parameter
+
+    Tt.order.j = Tt
+  }
 
 
-  return(Ttt)
+  return(Tt)
 
 }

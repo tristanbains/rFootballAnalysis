@@ -4,7 +4,6 @@
 #'
 #' @export
 #' @import tidyverse
-#' @param data match data tibble that should contain one season for one league with columns "Div","Season","Date","HomeTeam","AwayTeam" and "Res"
 #' @return tibble with columns "Div","Season","Parameter","Order"
 #'
 
@@ -19,7 +18,7 @@ ST_RankingOrdering=function(){
   rank.ENG1 = c("-Pts -GD -GF -Pts.agg -GD.agg -GF.agg -AGF.agg")   # Default for all leagues
   rank.BEL1 = c("-Pts -W -GF")
   rank.UKR1 = rank.BEL1
-  rank.ESP1 = c("-Pts -Pts.agg -GD.agg -GF")      # ESP + ITA + PRT
+  rank.ESP1 = c("-Pts -Pts.agg -GD.agg -GF")
   rank.ITA1 = rank.ESP1
   rank.PRT1 = rank.ESP1
   rank.GRC1 = c("-Pts -Pts.agg -GD.agg -GF")
