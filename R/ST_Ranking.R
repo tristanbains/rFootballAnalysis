@@ -87,7 +87,7 @@ ST_Ranking=function(data,ordering=ST_RankingOrdering()){
            Pts.agg=ifelse(Res==0,1,Pts.agg),
            GF.agg=ifelse(Loc==1,FTHG,FTAG),
            GD.agg=ifelse(Loc==1,FTHG-FTAG,FTAG-FTHG),
-           AGF.agg=ifelse(Loc==-1,FTAG,0)) %>%
+           AGF.agg=ifelse(Loc==-1,FTAG,as.integer(0))) %>%
     summarise(Pts.agg=sum(Pts.agg),
               GD.agg=sum(GD.agg),
               GF.agg=sum(GF.agg),
@@ -108,11 +108,6 @@ ST_Ranking=function(data,ordering=ST_RankingOrdering()){
     filter(Div%in%c(Tt$Div),Season%in%Tt$Season) %>%
     arrange(Div,Season,Order)
   orderUnique = unique(order[,c("Div","Season")])
-
-  # HIER GEBLEVEN
-  # order %>% mutate(OrderL=sprintf("Order%02d",Order)) %>% dplyr::select(-Order) %>% spread(OrderL,Parameter)
-  # sub("-","",unique(order$Parameter))
-
 
   # Add ranking:
   orderDefault = ordering %>%
