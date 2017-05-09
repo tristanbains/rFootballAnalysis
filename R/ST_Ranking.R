@@ -5,7 +5,7 @@
 #' @export
 #' @import tidyverse
 #' @param data match data tibble that should contain columns "Div","Season","Date","HomeTeam","AwayTeam","FTHG","FTAG" and "Res"
-#' @return tibble witH columns "Rank","Div","Season","Date","Team","M","W","D","L","Pts","GF","GA","GD","HM","HW","HD","HL","HPts","HGF","HGA","HGD","AM","AW","AD","AL","APts","AGF","AGA","AGD"
+#' @return tibble witH columns "Div","Season","Rank","Date","Team","M","W","D","L","Pts","GF","GA","GD","HM","HW","HD","HL","HPts","HGF","HGA","HGD","AM","AW","AD","AL","APts","AGF","AGA","AGD"
 #'
 
 ST_Ranking=function(data,ordering=ST_RankingOrdering()){
@@ -101,30 +101,52 @@ ST_Ranking=function(data,ordering=ST_RankingOrdering()){
   rm(Tt.agg,Tt.aggH,Tt.aggA)
   gc()
 
-  colsTt = colnames(Tt)
+  scols = setdiff(colnames(Tt),c("Div","Season"))
 
   # Determine column ordering:
   order = ordering %>%
-    filter(Div%in%c(Tt$Div,"ENG1"),Season%in%Tt$Season) %>%
+    filter(Div%in%c(Tt$Div),Season%in%Tt$Season) %>%
     arrange(Div,Season,Order)
   orderUnique = unique(order[,c("Div","Season")])
 
   # HIER GEBLEVEN
   # order %>% mutate(OrderL=sprintf("Order%02d",Order)) %>% dplyr::select(-Order) %>% spread(OrderL,Parameter)
   # sub("-","",unique(order$Parameter))
-  Tt.order = Tt[,c("Div","Season","Team",sub("-","",unique(order$Parameter)))]
+
 
   # Add ranking:
+  orderDefault = ordering %>%
+    filter(Div=="ENG1",Season==last(Season))
+
+  Tt.order = Tt[,c("Div","Season","Team",sub("-","",unique(c(order$Parameter,orderDefault$Parameter))))]
+  Tt.order = Tt.order %>%
+    group_by(Div,Season) %>%
+    arrange_(.dots=orderDefault$Parameter) %>%
+    mutate(Rank=row_number()) %>%
+    ungroup() %>%
+    mutate(Country = substr(Div,1,3),
+           Y1 = substr(Season,1,4))
+
   for (j in 1:nrow(orderUnique)){
     order.j = order %>%
       inner_join(orderUnique[j,]) %>%
       arrange(Order)
-    order.j = order.j$Parameter
 
-    Tt.order.j = Tt
+    ct = substr(order.j$Div,1,3)[1]
+    sn = substr(order.j$Season,1,4)[1]
+
+    Tt.order = Tt.order %>%
+      group_by(Div,Season) %>%
+      arrange_(.dots=order.j$Parameter) %>%
+      mutate(Rank2=row_number()) %>%
+      ungroup() %>%
+      mutate(Rank=ifelse(Country==ct & Y1 == sn,Rank2,Rank))
   }
 
+  Tt = Tt %>%
+    full_join(Tt.order) %>%
+    dplyr::select_(.dots = c("Div","Season","Rank",scols)) %>%
+    arrange(Div,Season,Rank)
 
   return(Tt)
-
 }
