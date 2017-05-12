@@ -3,7 +3,6 @@
 #' creates tibble with the string that is needed to plot correctly
 #'
 #' @export
-#' @import tidyverse
 #' @return tibble with columns "CountryCode","MapSource","MapString","xmin","xmax","ymin","ymax"
 #'
 
