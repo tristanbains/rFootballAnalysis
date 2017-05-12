@@ -4,7 +4,8 @@
 \alias{ST_Ranking}
 \title{ST_Ranking}
 \usage{
-ST_Ranking(data, ordering = ST_RankingOrdering())
+ST_Ranking(data,
+  ordering = suppressMessages(suppressWarnings(ST_RankingOrdering())))
 }
 \arguments{
 \item{data}{match data tibble that should contain columns "Div","Season","Date","HomeTeam","AwayTeam","FTHG","FTAG" and "Res"}
