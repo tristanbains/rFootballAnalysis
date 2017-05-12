@@ -8,7 +8,8 @@
 #' @return tibble witH columns "Div","Season","Rank","Date","Team","M","W","D","L","Pts","GF","GA","GD","HM","HW","HD","HL","HPts","HGF","HGA","HGD","AM","AW","AD","AL","APts","AGF","AGA","AGD"
 #'
 
-ST_Ranking=function(data,ordering=ST_RankingOrdering()){
+ST_Ranking=function(data,
+                    ordering=suppressMessages(suppressWarnings(ST_RankingOrdering()))){
 
   # Create all the columns (except for aggregates):
   Tt = data %>%

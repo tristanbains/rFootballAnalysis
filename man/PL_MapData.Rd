@@ -12,3 +12,6 @@ tibble with columns "CountryCode","MapSource","MapString","xmin","xmax","ymin","
 \description{
 creates tibble with the string that is needed to plot correctly
 }
+\details{
+#@export
+}
