@@ -3,7 +3,7 @@
 #' download multiple seasons for multiple league from www.football-data.co.uk
 #'
 #' @export
-#' @import zoo
+#' @import tidyverse zoo
 #' @return tibble with columns ISO4 (e.g. "NLD1"), Year (e.g. "2005") and URL
 #'
 

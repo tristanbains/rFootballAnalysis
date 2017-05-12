@@ -2,7 +2,7 @@
 #'
 #' creates tibble with the string that is needed to plot correctly
 #'
-#' #@export
+#' @export
 #' @import tidyverse
 #' @return tibble with columns "CountryCode","MapSource","MapString","xmin","xmax","ymin","ymax"
 #'
@@ -20,38 +20,56 @@ PL_MapData = function(){
   NW = rbind(DEU,NLD,BEL)
 
   # S
+  ESP = tibble(CountryCode="ESP",MapString=c("Spain","Canary"))
+  PRT = tibble(CountryCode="PRT",MapString=c("Portugal","Madeira"))
   ITA = tibble(CountryCode="ITA",MapString=c("Italy","Sicily","Sardinia"))
   GRC = tibble(CountryCode="GRC",MapString=c("Greece"))
   TUR = tibble(CountryCode="TUR",MapString=c("Turkey"))
-  S = rbind(ITA,GRC,TUR)
+  S = rbind(ESP,PRT,ITA,GRC,TUR)
 
   # N
   SWE = tibble(CountryCode="SWE",MapString=c("Sweden"))
-  NOR = tibble(CountryCode="NOR",MapString=c("Norway"))
-  DNK = tibble(CountryCode="DNK",MapString=c("Denmark"))
   FIN = tibble(CountryCode="FIN",MapString=c("Finland"))
-  N = rbind(SWE,NOR,DNK,FIN)
-
-  # SE
-  #  = tibble(CountryCode="",MapString=c(""))
+  N = rbind(SWE,FIN)
 
   # C
   AUT = tibble(CountryCode="AUT",MapString=c("Austria"))
   CHE = tibble(CountryCode="CHE",MapString=c("Switzerland"))
-  C = rbind(AUT,CHE)
+  # CZE = tibble(CountryCode="CZE",MapString=c("Czech"))
+  # SVK = tibble(CountryCode="SVK",MapString=c("Slovakia"))
+  HUN = tibble(CountryCode="HUN",MapString=c("Hungary"))
+  C = rbind(AUT,CHE,HUN)
 
+  # E
+  POL  = tibble(CountryCode="POL",MapString=c("Poland"))
+  E = rbind(POL)
+
+  # SE
+  # SRB  = tibble(CountryCode="SRB",MapString=c("Serbia"))
+  # BIH  = tibble(CountryCode="BIH",MapString=c("Bosnia"))
+  # HRV  = tibble(CountryCode="HRV",MapString=c("Croatia"))
+  # SVN  = tibble(CountryCode="SVN",MapString=c("Slovenia"))
+  ALB  = tibble(CountryCode="ALB",MapString=c("Albania"))
+  ROM  = tibble(CountryCode="ROM",MapString=c("Romania"))
+  BGR  = tibble(CountryCode="BGR",MapString=c("Bulgaria"))
+  #  = tibble(CountryCode="",MapString=c(""))
+  SE = rbind(ALB,ROM,BGR)
+
+  Tt = rbind(NW,S,C,N,E,SE)
 
   # Countries with long/lat restrictions:
-  # ESP
+
   # FRA
   # PRT
   # ENG
   # SCO
-  # restr = rbind(ESP,FRA,PRT,ENG,SCO)
+  # DNK = tibble(CountryCode="DNK",MapString=c("Denmark"))
+  # NOR = tibble(CountryCode="NOR",MapString=c("Norway"))
+  # restr = rbind(ESP,FRA,PRT,ENG,SCO,DNK,NOR)
 
   # map("worldHires",Tt$MapString[Tt$CountryCode=="ITA"])
 
-  Tt = rbind(NW,S,C,N)
+
   return(Tt)
 }
 
