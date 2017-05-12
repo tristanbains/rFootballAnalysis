@@ -6,9 +6,6 @@
 \usage{
 ST_RankingOrdering()
 }
-\arguments{
-\item{data}{match data tibble that should contain one season for one league with columns "Div","Season","Date","HomeTeam","AwayTeam" and "Res"}
-}
 \value{
 tibble with columns "Div","Season","Parameter","Order"
 }

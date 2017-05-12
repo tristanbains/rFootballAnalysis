@@ -7,10 +7,10 @@
 ST_Ranking(data, ordering = ST_RankingOrdering())
 }
 \arguments{
-\item{data}{match data tibble that should contain one season for one league with columns "Div","Season","Date","HomeTeam","AwayTeam" and "Res"}
+\item{data}{match data tibble that should contain columns "Div","Season","Date","HomeTeam","AwayTeam","FTHG","FTAG" and "Res"}
 }
 \value{
-tibble with columns "Div","Season","Date","HomeTeam","AwayTeam","Res","HWpct","Dpct","AWpct","QH0","QH1","QA0","QA1"
+tibble witH columns "Div","Season","Rank","Date","Team","M","W","D","L","Pts","GF","GA","GD","HM","HW","HD","HL","HPts","HGF","HGA","HGD","AM","AW","AD","AL","APts","AGF","AGA","AGD"
 }
 \description{
 creates season rankings
