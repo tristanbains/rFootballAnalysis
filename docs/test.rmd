@@ -11,8 +11,9 @@ output:
 
 library(rFootballAnalysis)
 library(tidyverse)
+library(mapdata)
 
-Ttt = DL_MatchData(c("ESP1","ENG1","FRA1","GRC1"),"2016-2017","2016-2017")
+Ttt = DL_Matches(c("NLD1","ESP1"),"2016-2017","2016-2017")
 Tt = ST_Ranking(Ttt)
 
 ```
@@ -40,6 +41,7 @@ for (i in 1:nrow(nLeagues)){
   
   print(ggplot(Tt.season,aes(reorder(Team,-Rank),Pts)) +
           geom_bar(stat="identity") +
+          # geom_text(aes(label=Pts)) +
           coord_flip() +
           theme_minimal() +
           labs(x = "Team",y = "Points"))

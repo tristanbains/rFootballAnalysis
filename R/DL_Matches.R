@@ -1,4 +1,4 @@
-#' DL_MatchData
+#' DL_Matches
 #'
 #' wrapper function that downloads multiple seasons for multiple league from one of the source websites
 #'
@@ -11,7 +11,7 @@
 #' @return tibble for multiple seasons and leagues with all matches, results and bookmaker odds (if available)
 #'
 
-DL_MatchData = function(divs,season1,season2,website="FootballDataCoUk"){
+DL_Matches = function(divs,season1,season2,website="FootballDataCoUk"){
   if(website=="FootballDataCoUk"){
     Tt = DL_FootballDataCoUk(divs=divs,season1 = season1,season2 = season2)
   } else if(website=="XScores"){
