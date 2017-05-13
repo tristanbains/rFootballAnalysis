@@ -2,13 +2,12 @@
 #'
 #' creates tibble with the string that is needed to plot correctly
 #'
+#' @import tidyverse maps mapdata
 #' @export
 #' @return tibble with columns "CountryCode","MapSource","MapString","xmin","xmax","ymin","ymax"
 #'
 
 PL_MapData = function(){
-  # map('worldHires',c('UK', 'Ireland', 'Isle of Man','Isle of Wight'),xlim=c(-11,3), ylim=c(49,60.9))	UK
-  # map('worldHires',c('UK'),xlim=c(-5.7,1.75), ylim=c(49.9,55.5))	ENG
 
   # Countries that can be defined by regions:
 
@@ -58,16 +57,23 @@ PL_MapData = function(){
 
   # Countries with long/lat restrictions:
 
-  # FRA
-  # PRT
-  # ENG
-  # SCO
-  # DNK = tibble(CountryCode="DNK",MapString=c("Denmark"))
-  # NOR = tibble(CountryCode="NOR",MapString=c("Norway"))
-  # restr = rbind(ESP,FRA,PRT,ENG,SCO,DNK,NOR)
+  ENG = tibble(CountryCode="ENG",MapString=c("UK"),xmin=-5.7,xmax=1.75,ymin=49.9,ymax=55.5)
+  SCO = tibble(CountryCode="SCO",MapString=c("UK"),xmin=-7.5,xmax=1.75,ymin=54.5,ymax=61)
+  FRA = tibble(CountryCode="FRA",MapString=c("France","Corsica"),xmin=-5,xmax=10,ymin=41,ymax=51)
+  DNK = tibble(CountryCode="DNK",MapString=c("Denmark"),xmin=8,xmax=12.8,ymin=53.5,ymax=58)
+  NOR = tibble(CountryCode="NOR",MapString=c("Norway"),xmin=4.5,xmax=34,ymin=58,ymax=71)
+  Tt.restr = rbind(ENG,SCO,FRA,SCO,DNK,NOR)
 
-  # map("worldHires",Tt$MapString[Tt$CountryCode=="ITA"])
+  Tt = full_join(Tt,Tt.restr)
 
+  # map('worldHires',c('France',"Corsica"),xlim=c(-5,10), ylim=c(41,51))
+  # cts = c("ESP","PRT");map("worldHires",Tt$MapString[Tt$CountryCode %in% cts])
+  # map("worldHires",Tt.restr$MapString,xlim=c(min(Tt.restr$xmin),max(Tt.restr$xmax)),ylim=c(min(Tt.restr$ymin),max(Tt.restr$ymax)))
+
+  Tt = Tt %>%
+    mutate(MapSource = "worldHires") %>%
+    dplyr::select(CountryCode,MapSource,MapString,xmin,xmax,ymin,ymax) %>%
+    arrange(CountryCode,MapString,MapSource)
 
   return(Tt)
 }
