@@ -4,11 +4,17 @@
 \alias{DL_Soccerway_season_logo}
 \title{DL_Soccerway_season_logo}
 \usage{
-DL_Soccerway_season_logo(div, url)
+DL_Soccerway_season_logo(countryCode, url)
+}
+\arguments{
+\item{countryCode}{e.g. "ESP"}
+
+\item{url}{e.g. "http://nl.soccerway.com/national/spain/segunda-division/20152016/regular-season/r32028/map"}
 }
 \value{
-tibble
+tibble with columns CountryCode ("ESP"), Team ("UD Almería"), Logo ("http://cache.images.core.optasports.com/soccer/teams/150x150/2049.png")
 }
 \description{
-creates tibble
+creates tibble with lat-long pairs per club. url input usually comes from DL_Soccerway_season_data(), the URL.geo column
+df = DL_Soccerway_data("NLD1"); DL_Soccerway_season_logo("NLD",df$URL.logo)
 }

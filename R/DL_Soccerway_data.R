@@ -3,8 +3,8 @@
 #' creates tibble with the string that is needed to plot correctly
 #'
 #' @export
-#' @import tidyverse zoo
-#' @return tibble with columns Div (e.g. "NLD1"), Year (e.g. "2005") URL.geo, URL.logo, URL.stadium
+#' @import tidyverse
+#' @return tibble with columns Div (e.g. "NLD1"),"Season",Year (e.g. 2005) URL.geo, URL.logo, URL.stadium
 #'
 
 DL_Soccerway_data = function(divs="DEU3",year1=(as.numeric(format(Sys.Date(),"%Y"))-1)){

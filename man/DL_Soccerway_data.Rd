@@ -8,7 +8,7 @@ DL_Soccerway_data(divs = "DEU3", year1 = (as.numeric(format(Sys.Date(),
   "\%Y")) - 1))
 }
 \value{
-tibble with columns Div (e.g. "NLD1"), Year (e.g. "2005") URL.geo, URL.logo, URL.stadium
+tibble with columns Div (e.g. "NLD1"),"Season",Year (e.g. 2005) URL.geo, URL.logo, URL.stadium
 }
 \description{
 creates tibble with the string that is needed to plot correctly
