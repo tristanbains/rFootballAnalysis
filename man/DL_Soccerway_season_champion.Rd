@@ -6,9 +6,15 @@
 \usage{
 DL_Soccerway_season_champion(div, url)
 }
+\arguments{
+\item{div}{e.g. "NLD1"}
+
+\item{url}{e.g. "http://nl.soccerway.com/national/netherlands/eredivisie/c1/archive"}
+}
 \value{
-tibble
+tibble with columns Div ("ESP1"), Season, Champion ("Barcelona"), RunnerUp ("Real Madrid")
 }
 \description{
-creates tibble
+creates tibble with all the champions in a league. url input usually comes from DL_Soccerway_season_data(), the URL.archive column
+df = DL_Soccerway_data("NLD1"); DL_Soccerway_season_champion("NLD",df$URL.archive)
 }

@@ -156,7 +156,8 @@ DL_Soccerway_data = function(divs="DEU3",year1=(as.numeric(format(Sys.Date(),"%Y
                  Year=y1.j,
                  URL.geo=paste0(URL,"map"),
                  URL.logo=URL.geo,
-                 URL.stadium=paste0(URL,"venues")) %>%
+                 URL.stadium=paste0(URL,"venues"),
+                 URL.archive=url.archive.i) %>%
           dplyr::select(-URL)
 
         if(j==1){
@@ -178,7 +179,7 @@ DL_Soccerway_data = function(divs="DEU3",year1=(as.numeric(format(Sys.Date(),"%Y
   }
 
   Tt.i = Tt.i %>%
-    dplyr::select(Div,Season,Year,URL.geo,URL.logo,URL.stadium)
+    dplyr::select(Div,Season,Year,URL.geo,URL.logo,URL.stadium,URL.archive)
 
   return(Tt.i)
 }

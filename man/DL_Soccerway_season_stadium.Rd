@@ -15,7 +15,7 @@ DL_Soccerway_season_stadium(countryCode, url)
 tibble with columns CountryCode ("ESP"), Team ("UD Almería"), Stadium, Capacity, City, Address
 }
 \description{
-creates tibble with lat-long pairs per club. url input usually comes from DL_Soccerway_season_data(), the URL.geo column
-df = DL_Soccerway_data("NLD1"); DL_Soccerway_season_logo("NLD",df$URL.logo)
-Outpu can have multiple stadiums, often the case for 2nd team of a club
+creates tibble with stadium info per club. url input usually comes from DL_Soccerway_season_data(), the URL.stadium column
+df = DL_Soccerway_data("NLD1"); DL_Soccerway_season_stadium("NLD",df$URL.stadium)
+Output can have multiple stadiums, often the case for 2nd team of a club
 }
