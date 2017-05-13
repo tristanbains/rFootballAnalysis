@@ -1,6 +1,6 @@
 #' DL_Soccerway_season_logo
 #'
-#' creates tibble with lat-long pairs per club. url input usually comes from DL_Soccerway_season_data(), the URL.geo column
+#' creates tibble with logo url per club. url input usually comes from DL_Soccerway_season_data(), the URL.logo column
 #' df = DL_Soccerway_data("NLD1"); DL_Soccerway_season_logo("NLD",df$URL.logo)
 #'
 #' @import tidyverse
@@ -15,7 +15,7 @@ DL_Soccerway_season_logo = function(countryCode,url){
   txt="        setMarker("
   Team=Ttt[which(Ttt==txt)+1]
   Logo=Ttt[which(Ttt==txt)+8]
-  Tt = data.frame(CountryCode=countryCode,Team,Logo,stringsAsFactors=FALSE) %>%
+  Tt = tibble(CountryCode=countryCode,Team,Logo) %>%
     mutate(Team=gsub( '[",]', "",Team)) %>%
     mutate(Team=sub('^\\s*','',Team)) %>%
     mutate(Team=sub('*\\s$','',Team)) %>%

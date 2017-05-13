@@ -15,6 +15,6 @@ DL_Soccerway_season_logo(countryCode, url)
 tibble with columns CountryCode ("ESP"), Team ("UD Almería"), Logo ("http://cache.images.core.optasports.com/soccer/teams/150x150/2049.png")
 }
 \description{
-creates tibble with lat-long pairs per club. url input usually comes from DL_Soccerway_season_data(), the URL.geo column
+creates tibble with logo url per club. url input usually comes from DL_Soccerway_season_data(), the URL.logo column
 df = DL_Soccerway_data("NLD1"); DL_Soccerway_season_logo("NLD",df$URL.logo)
 }

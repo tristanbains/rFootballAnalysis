@@ -4,11 +4,18 @@
 \alias{DL_Soccerway_season_stadium}
 \title{DL_Soccerway_season_stadium}
 \usage{
-DL_Soccerway_season_stadium(div, url)
+DL_Soccerway_season_stadium(countryCode, url)
+}
+\arguments{
+\item{countryCode}{e.g. "ESP"}
+
+\item{url}{e.g. "http://nl.soccerway.com/national/spain/segunda-division/20152016/regular-season/r32028/venues"}
 }
 \value{
-tibble
+tibble with columns CountryCode ("ESP"), Team ("UD Almería"), Stadium, Capacity, City, Address
 }
 \description{
-creates tibble
+creates tibble with lat-long pairs per club. url input usually comes from DL_Soccerway_season_data(), the URL.geo column
+df = DL_Soccerway_data("NLD1"); DL_Soccerway_season_logo("NLD",df$URL.logo)
+Outpu can have multiple stadiums, often the case for 2nd team of a club
 }
