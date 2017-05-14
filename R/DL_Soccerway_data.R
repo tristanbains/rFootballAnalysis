@@ -7,7 +7,7 @@
 #' @return tibble with columns Div (e.g. "NLD1"),"Season",Year (e.g. 2005) URL.geo, URL.logo, URL.stadium
 #'
 
-DL_Soccerway_data = function(divs="DEU3",year1=(as.numeric(format(Sys.Date(),"%Y"))-1)){
+DL_Soccerway_data = function(divs,year1=(as.numeric(format(Sys.Date(),"%Y"))-1)){
 
   # Data per league:
 
@@ -101,7 +101,7 @@ DL_Soccerway_data = function(divs="DEU3",year1=(as.numeric(format(Sys.Date(),"%Y
   RUS2 = tibble(Div="RUS2",URL="http://nl.soccerway.com/national/russia/1-division")
   E = rbind(POL1,POL2,BLR1,BLR2,UKR1,UKR2,RUS1,RUS2)
 
-  Tt = rbind(NW,S,N,C,E,SE) %>% arrange(Div)
+  Tt = rbind(NW,UK,S,N,C,E,SE) %>% arrange(Div)
 
   urls = Tt %>% filter(Div %in% divs)
 

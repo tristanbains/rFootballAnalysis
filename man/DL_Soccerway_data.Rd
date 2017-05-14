@@ -4,8 +4,7 @@
 \alias{DL_Soccerway_data}
 \title{DL_Soccerway_data}
 \usage{
-DL_Soccerway_data(divs = "DEU3", year1 = (as.numeric(format(Sys.Date(),
-  "\%Y")) - 1))
+DL_Soccerway_data(divs, year1 = (as.numeric(format(Sys.Date(), "\%Y")) - 1))
 }
 \value{
 tibble with columns Div (e.g. "NLD1"),"Season",Year (e.g. 2005) URL.geo, URL.logo, URL.stadium

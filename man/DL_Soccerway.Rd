@@ -9,9 +9,9 @@ DL_Soccerway(divs, season1, season2, type, DL.input = NA)
 \arguments{
 \item{divs}{e.g. c("ENG1","FRA1")}
 
-\item{season1}{e.g. ("2001-2002")}
+\item{season1}{e.g. "2012-2013"}
 
-\item{season2}{e.g. ("2005-2006")}
+\item{season2}{e.g. "2013-2014"}
 
 \item{type}{what to download? Value can be "geo", "logo" "stadium", or "champion"}
 
