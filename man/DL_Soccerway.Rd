@@ -4,11 +4,22 @@
 \alias{DL_Soccerway}
 \title{DL_Soccerway}
 \usage{
-DL_Soccerway()
+DL_Soccerway(divs, season1, season2, type, DL.input = NA)
+}
+\arguments{
+\item{divs}{e.g. c("ENG1","FRA1")}
+
+\item{season1}{e.g. ("2001-2002")}
+
+\item{season2}{e.g. ("2005-2006")}
+
+\item{type}{what to download? Value can be "geo", "logo" "stadium", or "champion"}
+
+\item{DL.input}{usually output of DL_Soccerway_data(). If NA then the function is called for all combinations of the other inputs}
 }
 \value{
-tibble
+tibble for multiple seasons and leagues with all matches, results and bookmaker odds
 }
 \description{
-creates tibble
+download multiple seasons for multiple leagues from www.soccerway.com
 }
