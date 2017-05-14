@@ -4,12 +4,13 @@
 \alias{DL_Soccerway_download_logo}
 \title{DL_Soccerway_download_logo}
 \usage{
-DL_Soccerway_download_logo(DL.input, subfolder, overwrite = FALSE)
+DL_Soccerway_download_logo(DL.input, subfolder = "~/Desktop/Logos",
+  overwrite = FALSE)
 }
 \arguments{
-\item{DL.input}{a tibble that should contain columns FileName (string, without extension) and LogoURL.}
+\item{DL.input}{a tibble that should contain columns FileName (string, with extension) and LogoURL.}
 
-\item{subfolder}{the name of the subfolder of the current working directory, e.g. "Logos"}
+\item{subfolder}{the name of the subfolder where to store thelogos, e.g. "~/Desktop/Logos"}
 
 \item{overwrite}{if TRUE then download all logos and overwrite existing logos in the folder with the same name}
 }
@@ -18,7 +19,10 @@ Download logos to the specified folder, which is a subfolder of the working dire
 If the folder doesn't exist then create it.
 }
 \examples{
-df = DL_Soccerway_data("NLD1"); df.logos = DL_Soccerway_season_logo("NLD",df$URL.logo);
-DL.input = df.logos \%>\% mutate(FileName=paste(CountryCode,Team,sep=" - "));DL_Soccerway_download_logo(DL.input,"LogoTest")
+setwd("/Users/tristanbains/Desktop/R/rFootballAnalysis");lg="RUS2";
+lgs=substr(lg,1,3);df = DL_Soccerway_data(lg); df.logos = DL_Soccerway_season_logo(lgs,df$URL.logo);
+DL.input = df.logos \%>\% mutate(FileName=paste0(CountryCode," - ",Team,".png"));DL_Soccerway_download_logo(DL.input)
+
+
 
 }
