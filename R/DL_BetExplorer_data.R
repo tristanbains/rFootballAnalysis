@@ -9,6 +9,7 @@
 
 # TO DO: huidige seizoen ook toevoegen, staat geen seizoen in de url, na.locf(fromLast=TRUE)?
 # TO DO: als input ITA3 is dan zoeken op ITA3A en ITA3B en evt ITA3
+# TO DO: meer landen toevoegen
 # TO DO: check binnen een results om verschillende tabbladen met main, playoffs e.d te detecteren, zie bv http://www.betexplorer.com/soccer/italy/lega-pro-group-a/results/
 # TO DO: puntenaftrek herkennen, zie bv http://www.betexplorer.com/soccer/italy/lega-pro-c2-a-2011-2012/?stage=lMeU6nWP
 

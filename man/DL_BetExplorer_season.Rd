@@ -7,9 +7,9 @@
 DL_BetExplorer_season(div, url)
 }
 \arguments{
-\item{div}{e.g. "ENG1"}
+\item{div}{e.g. "DEU2"}
 
-\item{url}{e.g. "http://www.football-data.co.uk/mmz4281/1516/E0.csv"}
+\item{url}{e.g. "http://www.betexplorer.com/soccer/germany/2-bundesliga-2015-2016/results"}
 }
 \value{
 tibble for one season and one league with all matches, results and bookmaker odds
